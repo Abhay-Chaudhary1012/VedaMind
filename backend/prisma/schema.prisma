@@ -1,0 +1,49 @@
+// VedaMind — Prisma schema (SQLite fallback)
+// To use: set DATABASE_URL="file:./dev.db" in .env
+// Run: npx prisma migrate dev --name init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+  id                 String       @id @default(uuid())
+  name               String
+  token              String       @unique
+  totalLearningHours Float        @default(0)
+  avgScore           Int          @default(0)
+  preferenceStyle    String       @default("example")
+  unlockedTiers      String       @default("[0]")
+  strongTopics       String       @default("[]")
+  topSubjects        String       @default("[]")
+  optInLogging       Boolean      @default(false)
+  createdAt          DateTime     @default(now())
+  sessions           Session[]
+  quizzes            QuizRecord[]
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id])
+  start     DateTime
+  end       DateTime
+  topic     String
+  hours     Float
+}
+
+model QuizRecord {
+  id        String   @id @default(uuid())
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id])
+  topic     String
+  score     Int
+  timeTaken Int      @default(0)
+  mistakes  String   @default("[]")
+  createdAt DateTime @default(now())
+}

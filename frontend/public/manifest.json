@@ -1,0 +1,12 @@
+{
+  "name": "VedaMind — MentorMind AI",
+  "short_name": "VedaMind",
+  "description": "Adaptive AI Learning Companion for Class 6-10",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0a1a",
+  "theme_color": "#7c3aed",
+  "icons": [
+    { "src": "/vite.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
