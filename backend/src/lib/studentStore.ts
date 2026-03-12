@@ -18,21 +18,15 @@ const studentsById = new Map<string, Student>();
 
 export async function findOrCreateStudent(name: string): Promise<Student> {
   const key = name.toLowerCase().trim();
-
-  // Check mock students first (priya, raj, etc.)
   const mock = memStore.students.get(key);
   if (mock) {
     if (!mock.token) mock.token = randomUUID();
     studentsById.set(mock.id, mock);
     return mock;
   }
-
-  // Check if already created in this session
   for (const s of studentsById.values()) {
     if (s.name.toLowerCase() === key) return s;
   }
-
-  // Create new student
   const student: Student = {
     id: randomUUID(),
     name: name.trim(),
@@ -45,21 +39,29 @@ export async function findOrCreateStudent(name: string): Promise<Student> {
     sessions: [],
     quizzes: [],
   };
-
-  // ✅ Save in BOTH maps so authMiddleware can find the token
   studentsById.set(student.id, student);
   memStore.students.set(key, student);
-
   return student;
 }
 
 export async function getStudent(id: string): Promise<Student | null> {
-  // Check by id directly
   if (studentsById.has(id)) return studentsById.get(id)!;
-  
-  // Also search memStore
   for (const s of memStore.students.values()) {
     if (s.id === id) return s;
   }
   return null;
+}
+
+export async function updateStudentAfterQuiz(studentId: string, quizRecord: any): Promise<Student> {
+  const student = await getStudent(studentId);
+  if (!student) throw new Error('Student not found');
+  student.quizzes = [...(student.quizzes || []), quizRecord];
+  const scores = student.quizzes.map((q: any) => q.score);
+  student.avgScore = Math.round(scores.reduce((a: number, b: number) => a + b, 0) / scores.length);
+  student.totalLearningHours = parseFloat((student.totalLearningHours + 0.5).toFixed(1));
+  if (student.totalLearningHours >= 29) student.unlockedTiers = [0, 1, 2];
+  else if (student.totalLearningHours >= 10) student.unlockedTiers = [0, 1];
+  else student.unlockedTiers = [0];
+  studentsById.set(studentId, student);
+  return student;
 }

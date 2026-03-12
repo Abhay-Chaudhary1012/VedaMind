@@ -6,3 +6,7 @@ export const memStore = {
   sessions: new Map<string, any>(),
   students: new Map<string, any>(Object.entries(MOCK_STUDENTS)),
 };
+
+export async function connectMongo(): Promise<void> {
+  console.log('MongoDB connection skipped — using mock store');
+}
