@@ -7,6 +7,7 @@ interface Props {
   description: string;
   accent?: string;
   delay?: number;
+  index : number;
 }
 
 export function FeatureCard({ icon: Icon, title, description, accent = 'text-veda-violet-light', delay = 0 }: Props) {

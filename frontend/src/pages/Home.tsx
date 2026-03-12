@@ -29,7 +29,7 @@ export function Home() {
           </p>
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {features.map(f => <FeatureCard key={f.title} {...f} />)}
+          {features.map((f, i) => <FeatureCard key={f.title} {...f} index={i} />)}
         </div>
       </section>
 

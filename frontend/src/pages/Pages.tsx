@@ -1,18 +1,19 @@
 // Features Page
 import React from 'react';
+import { Brain, Book, Sparkles } from "lucide-react"
 import { motion } from 'framer-motion';
 import { FeatureCard } from '../components/FeatureCard';
 
 const ALL_FEATURES = [
-  { icon: '📝', title: 'Multi-Level Notes', description: 'ELI10 for beginners, Grade Level for standard study, Advanced for deeper understanding. One topic, three perspectives.', tier: 0 },
-  { icon: '🧠', title: 'AI Quiz Generator', description: '2 MCQs + 2 short answers + 1 challenge problem per quiz. AI generates questions tailored to difficulty.', tier: 0 },
-  { icon: '🤖', title: 'Instant AI Feedback', description: 'Submit any answer and get a grade (0–100), mistake analysis, corrected steps, and 2 suggested practice problems.', tier: 0 },
-  { icon: '⏱️', title: 'Response Time Tracking', description: 'We record how long you spend on each question to help identify where you struggle most.', tier: 0 },
-  { icon: '📊', title: 'Accuracy Trends', description: 'See how your scores improve over time, per topic. Visualize your learning curve.', tier: 1 },
-  { icon: '📁', title: 'Session History', description: 'Every learning session is logged — topic, duration, score. Your full learning timeline.', tier: 1 },
-  { icon: '🗺️', title: 'Topic Mastery Map', description: 'Which topics have you aced? Which need revision? At a glance.', tier: 1 },
-  { icon: '🎯', title: 'Career Hint Generator', description: 'Based on your learning patterns, topics, and scores — discover exciting careers that match your strengths.', tier: 2 },
-  { icon: '🔬', title: 'Advanced Tutor Mode', description: 'Deeper explanations, Socratic questioning, and personalized study plans. Powered by GPT-4o.', tier: 2 },
+  { icon: Book, title: 'Multi-Level Notes', description: 'ELI10 for beginners, Grade Level for standard study, Advanced for deeper understanding. One topic, three perspectives.', tier: 0 },
+  { icon: Brain, title: 'AI Quiz Generator', description: '2 MCQs + 2 short answers + 1 challenge problem per quiz. AI generates questions tailored to difficulty.', tier: 0 },
+  { icon: Sparkles, title: 'Instant AI Feedback', description: 'Submit any answer and get a grade (0–100), mistake analysis, corrected steps, and 2 suggested practice problems.', tier: 0 },
+  { icon: Brain, title: 'Response Time Tracking', description: 'We record how long you spend on each question to help identify where you struggle most.', tier: 0 },
+  { icon: Brain, title: 'Accuracy Trends', description: 'See how your scores improve over time, per topic. Visualize your learning curve.', tier: 1 },
+  { icon: Book, title: 'Session History', description: 'Every learning session is logged — topic, duration, score. Your full learning timeline.', tier: 1 },
+  { icon: Sparkles, title: 'Topic Mastery Map', description: 'Which topics have you aced? Which need revision? At a glance.', tier: 1 },
+  { icon: Brain, title: 'Career Hint Generator', description: 'Based on your learning patterns, topics, and scores — discover exciting careers that match your strengths.', tier: 2 },
+  { icon: Sparkles, title: 'Advanced Tutor Mode', description: 'Deeper explanations, Socratic questioning, and personalized study plans. Powered by GPT-4o.', tier: 2 },
 ];
 
 export function FeaturesPage() {
